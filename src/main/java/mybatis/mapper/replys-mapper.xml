@@ -5,7 +5,7 @@
 <mapper namespace="replys">
 	<insert id="replys" parameterType="String">
 		INSERT INTO
-		REPLYS(ID, MOIM_ID, WRITER,COMMENT)
+		REPLYS(ID, MOIM_ID, WRITER, MENT)
 		VALUES(REPLYS_SEQ.NEXTVAL,#{moimId}, #{writer}, #{comment})
 	</insert>
 	<select id="findByReplys" parameterType="String">
