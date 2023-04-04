@@ -200,3 +200,22 @@ input, textarea, button,select {
 	border-radius: 5px;
 	cursor: pointer;
 }
+/* 댓글창 */
+.moim-replys {
+	width: 960px;
+	margin: auto;
+	margin-top: 12px;
+	padding: 24px;
+	background-color: white;
+}
+
+.moim-replys table{
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.moim-replys td, th{
+	border-bottom: 1px solid #dddddd;
+	border-top: 1px solid #dddddd;
+	text-align: left;
+}

@@ -14,33 +14,38 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import data.User;
-
+import repository.Moims;
 
 @WebServlet("/moim/replys")
 public class MoimReplysController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
 		String moimId = req.getParameter("moimId");
 		String userId = req.getParameter("userId");
 		String writer = req.getParameter("writer");
-		
-		User logonUser = (User)req.getSession().getAttribute("logonUser");
-		if(logonUser == null ) {
+
+		User logonUser = (User) req.getSession().getAttribute("logonUser");
+		if (logonUser == null) {
 			resp.sendRedirect("/user/login");
 		}
-		
-		SqlSessionFactory factory= 
-				(SqlSessionFactory)req.getServletContext().getAttribute("sqlSessionFactory");
+
+		SqlSessionFactory factory = (SqlSessionFactory) req.getServletContext().getAttribute("sqlSessionFactory");
 		SqlSession sqlSession = factory.openSession();
-		
+
 		Map<String, Object> params = new HashMap<>();
-		params.put("moimId",moimId );
-		params.put("userId",userId );
-		params.put("writer",writer);
-		
+		params.put("moimId", moimId);
+		params.put("userId", userId);
+		params.put("writer", writer);
+
+		int r = sqlSession.insert("replys.create", params);
+
+		System.out.println(params);
+
 		sqlSession.commit();
 		sqlSession.close();
-		
+
+		resp.sendRedirect("/moim/detail?=id" + moimId);
 	}
+	
 }

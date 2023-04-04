@@ -87,11 +87,31 @@
 						</c:choose>
 						</c:if>
 					</div>
-					<div>
-						<c:forEach var="one" items="${replys }">
-						</c:forEach>
-					</div>
 				</div>
+							<%-- 댓글 --%>
+					<div class="moim-replys">					
+						<c:choose>
+							<c:when test="${empty relpys }">
+								댓글이 없습니다.
+							</c:when>
+							<c:otherwise>
+								<table>
+									<tr>
+										<th width="10%">작성자</th>
+										<th>내용</th>
+										<th width="10%">작성일</th>
+									</tr>
+									<c:forEach var="r" items="${replys }">
+										<tr>
+											<td>${r.writer }</td>
+											<td>${r.ment }</td>
+											<td><fmt:formatDate value="${r.writed }" pattern="yyyy.MM.dd"/></td>
+										</tr>
+									</c:forEach>
+								</table>
+							</c:otherwise>
+						</c:choose>
+					</div>
 			</div>
 		</div>
 
