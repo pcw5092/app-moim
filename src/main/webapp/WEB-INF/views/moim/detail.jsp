@@ -91,7 +91,7 @@
 							<%-- 댓글 --%>
 					<div class="moim-add-reply">
 						<form action="/moim/replys" method="post">
-						<input type="hidden" name="moimId" value="${moimId }"/>
+						<input type="hidden" name="moimId" value="${moim.id }"/>
 						<c:choose>
 							<c:when test="${empty sessionScope.logonUser }">
 								<textarea placeholder="내용을 입력해주세요" disabled="disabled"></textarea>
