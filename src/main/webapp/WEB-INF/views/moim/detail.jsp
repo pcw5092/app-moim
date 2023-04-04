@@ -89,9 +89,24 @@
 					</div>
 				</div>
 							<%-- 댓글 --%>
+					<div class="moim-add-reply">
+						<form action="/moim/replys" method="post">
+						<input type="hidden" name="moimId" value="${moimId }"/>
+						<c:choose>
+							<c:when test="${empty sessionScope.logonUser }">
+								<textarea placeholder="내용을 입력해주세요" disabled="disabled"></textarea>
+								<button type="submit" class="button">등록</button>
+							</c:when>
+							<c:otherwise>
+								<textarea placeholder="내용을 입력해주세요" name="ment"></textarea>
+								<button type="submit" class="button" >등록</button>
+							</c:otherwise>
+						</c:choose>
+						</form>
+					</div>
 					<div class="moim-replys">					
 						<c:choose>
-							<c:when test="${empty relpys }">
+							<c:when test="${empty replys }">
 								댓글이 없습니다.
 							</c:when>
 							<c:otherwise>
