@@ -1,10 +1,21 @@
 package data;
 
+import java.util.Date;
+
 public class Replys {
 	String id;
 	String moimId;
 	String writer;
 	String ment;
+	Date writed;
+
+	public Date getWrited() {
+		return writed;
+	}
+
+	public void setWrited(Date writed) {
+		this.writed = writed;
+	}
 
 	public String getId() {
 		return id;
