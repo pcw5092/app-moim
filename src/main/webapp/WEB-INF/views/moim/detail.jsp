@@ -87,6 +87,10 @@
 						</c:choose>
 						</c:if>
 					</div>
+					<div>
+						<c:forEach var="one" items="${replys }">
+						</c:forEach>
+					</div>
 				</div>
 			</div>
 		</div>
