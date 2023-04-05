@@ -36,12 +36,13 @@ input, textarea, button, select {
 	flex-direction: column;
 	gap: 2px;
 	margin-bottom: 4px;
+	margin-left: 10px;
 }
 
 .block-row {
 	display: flex;
 	flex-direction: row;
-	gap: 12px;
+	gap: 10px;
 	margin-bottom: 8px;
 	justify-content: flex-start;
 	flex-wrap: wrap;
