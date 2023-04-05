@@ -39,7 +39,7 @@
 			</c:otherwise>
 		</c:choose>
 
-		<c:set var="joinedCate" value="${fn:join(paramValues.cate, '&') }"/>
+		<c:set var="joinedCate" value="${fn:join(paramValues.cate, '&') }" />
 		<%-- 메인 / 검색창 및 검색 결과 뷰 --%>
 		<div style="flex: 1; min-width: 95vw; margin-top: 20px" class="block">
 			<%--  --%>
@@ -50,7 +50,9 @@
 						varStatus="vs">
 						<div>
 							<input name="cate" type="checkbox" value="${one }"
-								id="cate${vs.count }" ${fn:contains(joinedCate, one ) ? 'checked' :'' }/><label for="cate${vs.count }" >${one }</label>
+								id="cate${vs.count }"
+								${fn:contains(joinedCate, one ) ? 'checked' :'' } /><label
+								for="cate${vs.count }">${one }</label>
 						</div>
 					</c:forTokens>
 				</div>
@@ -64,9 +66,11 @@
 			<%-- 모임 정보 렌더링 영역 --%>
 			<div style="flex: 1" class="block-row">
 				<c:forEach items="${list }" var="moim">
-					<div class="moim-detail-card block" onclick="location.href='/moim/detail?id=${moim.id}'">
+					<div class="moim-detail-card block"
+						onclick="location.href='/moim/detail?id=${moim.id}'">
 						<div>
-							<span style="color:#9E4784 ;">[ ${moim.type eq 'public' ? '공개':'비공개' } / ${moim.cate }]</span>&nbsp;
+							<span style="color: #9E4784;">[ ${moim.type eq 'public' ? '공개':'비공개' }
+								/ ${moim.cate }]</span>&nbsp;
 							<c:choose>
 								<c:when test="${fn:length(moim.event) gt 16}">
 									${fn:substring(moim.event, 0,16) }...
@@ -91,16 +95,25 @@
 						<div style="text-align: left">
 							# 소개 : <span>${moim.description }</span>
 						</div>
-						<div>
-							
-						</div>
+						<div></div>
 					</div>
 				</c:forEach>
 			</div>
 			<%-- 페이지 링크 뷰 영역 --%>
+			<c:url value="/moim/search" var="target">
+				<c:forEach items="${paramValues.cate }" var="c">
+					<c:param name="cate" value="${c }" />
+				</c:forEach>
+			</c:url>
 			<div>
 				<c:if test="${existPrev }">
-				<a href="/moim/search?page=${start -1 }">←</a>
+					<c:url value="/moim/search" var="target">
+						<c:forEach items="${paramValues.cate }" var="c">
+							<c:param name="cate" value="${c }" />
+						</c:forEach>
+						<c:param name="page" value="${start-1 }" />
+					</c:url>
+					<a href="${target}">←</a>
 				</c:if>
 				<c:forEach var="p" begin="${start }" end="${last }">
 					<c:choose>
@@ -108,12 +121,12 @@
 							<b style="color: green">${p }</b>
 						</c:when>
 						<c:otherwise>
-							<a href="/moim/search?page=${p }">${p }</a>
+							<a href="${target }&page=${p }">${p }</a>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
 				<c:if test="${existNext }">
-					<a href="/moim/search?page=${last +1 }">→</a>
+					<a href="${target }&page=${last +1 }">→</a>
 				</c:if>
 			</div>
 		</div>
