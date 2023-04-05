@@ -116,17 +116,29 @@
 					<a href="${target}">←</a>
 				</c:if>
 				<c:forEach var="p" begin="${start }" end="${last }">
+					<c:url value="/moim/search" var="target">
+						<c:forEach items="${paramValues.cate }" var="c">
+							<c:param name="cate" value="${c }" />
+						</c:forEach>
+						<c:param name="page" value="${p }" />
+					</c:url>
 					<c:choose>
 						<c:when test="${p eq param.page }">
 							<b style="color: green">${p }</b>
 						</c:when>
 						<c:otherwise>
-							<a href="${target }&page=${p }">${p }</a>
+							<a href="${target }">${p }</a>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
 				<c:if test="${existNext }">
-					<a href="${target }&page=${last +1 }">→</a>
+					<c:url value="/moim/search" var="target">
+						<c:forEach items="${paramValues.cate }" var="c">
+							<c:param name="cate" value="${c }" />
+						</c:forEach>
+						<c:param name="page" value="${last + 1 }" />
+					</c:url>
+					<a href="${target }">→</a>
 				</c:if>
 			</div>
 		</div>
