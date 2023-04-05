@@ -95,11 +95,11 @@
 						<c:choose>
 							<c:when test="${empty sessionScope.logonUser }">
 								<textarea placeholder="내용을 입력해주세요" disabled="disabled"></textarea>
-								<button type="submit" class="button">등록</button>
+								<button type="submit" class="bt">등록</button>
 							</c:when>
 							<c:otherwise>
 								<textarea placeholder="내용을 입력해주세요" name="ment"></textarea>
-								<button type="submit" class="button" >등록</button>
+								<button type="submit" class="bt" >등록</button>
 							</c:otherwise>
 						</c:choose>
 						</form>
