@@ -100,11 +100,7 @@
 				</c:forEach>
 			</div>
 			<%-- 페이지 링크 뷰 영역 --%>
-			<c:url value="/moim/search" var="target">
-				<c:forEach items="${paramValues.cate }" var="c">
-					<c:param name="cate" value="${c }" />
-				</c:forEach>
-			</c:url>
+			<c:set	var="currentPage" value="${empty param.page ? 1 : param.page }"/>
 			<div>
 				<c:if test="${existPrev }">
 					<c:url value="/moim/search" var="target">
@@ -124,7 +120,7 @@
 					</c:url>
 					<c:choose>
 						<c:when test="${p eq param.page }">
-							<b style="color: green">${p }</b>
+							<b style="color:fuchsia; ">${p }</b>
 						</c:when>
 						<c:otherwise>
 							<a href="${target }">${p }</a>
